@@ -34,6 +34,9 @@ body{
    margin-bottom: 60px;
 }
 
+img{
+}
+
 .main__image img{
 }
 
@@ -88,6 +91,9 @@ p.item-4 {
 .button {
 }
 
+.link{
+}
+
 .button a{
    display: block;
    text-align: center;
@@ -121,9 +127,10 @@ p.item-4 {
          0 5px 0px black,
          0 6px 0px black,
          0 7px 1px crimson,
-         0 25px 5px black,
-         0 26px 10px black,
-         0 28px 20px black;
+         0 7px 30px crimson,
+         0 35px 5px black,
+         0 36px 15px black,
+         0 38px 30px black;
    background-color: rgba(0, 0, 0, 0.5);
    box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
    border: 0px solid rgba(0, 0, 0, 0.5);
