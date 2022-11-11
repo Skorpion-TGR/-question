@@ -36,3 +36,45 @@ if (animItems.length > 0) {
       animOnScroll();
    }, 300);
 }
+
+// прокрутка при кліку
+
+const menuLinks = document.querySelectorAll('.nav-block__link[data-goto]');
+if (menuLinks.length > 0) {
+   menuLinks.forEach(menuLink => {
+      menuLink.addEventListener("clock", onMenuLinkClick);
+   });
+
+   function onMenuLinkClick(e) {
+      const menuLink = e.target;
+      if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
+         const gotoBlock = document.querySelector(menuLink.dataset.goto);
+         const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYoffset - document.querySelector('header').offsetHeight;
+
+
+         if (iconMenu.classList.contains('._active')) {
+            document.body.classList.remove('_lock');
+            iconMenu.classList.remove('_active');
+            menuBody.classList.remove('_active');
+         }
+
+         window.scrollTo({
+            top: gotoBlockValue,
+            behavior: "smooth"
+         });
+         e.preventDefault();
+      }
+   }
+}
+
+// Бургер
+
+const iconMenu = document.querySelector('.content-header__icon');
+const menuBody = document.querySelector('.nav-block__items');
+if (iconMenu) {
+   iconMenu.addEventListener("click", function (e) {
+      document.body.classList.toggle('_lock');
+      iconMenu.classList.toggle('_active');
+      menuBody.classList.toggle('_active');
+   });
+}
