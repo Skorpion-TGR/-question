@@ -16,10 +16,10 @@ if (animItems.length > 0) {
          }
 
          if ((pageYoffset > animItemOffset - animItemPoint) && pageYoffset < (animItemOffset + animItemHeight)) {
-            animItem.classList.add('_active');
+            animItem.classList.add('_activate');
          } else {
             if (!animItem.classList.contains('_anim-no-hide')) {
-               animItem.classList.remove('_active');
+               animItem.classList.remove('_activate');
             }
          }
       }
@@ -37,19 +37,31 @@ if (animItems.length > 0) {
    }, 300);
 }
 
+// Бургер
+
+const iconMenu = document.querySelector('.content-header__icon');
+const menuBody = document.querySelector('.nav-block__items');
+if (iconMenu) {
+   iconMenu.addEventListener("click", function (e) {
+      document.body.classList.toggle('_lock');
+      iconMenu.classList.toggle('_active');
+      menuBody.classList.toggle('_active');
+   });
+}
+
 // прокрутка при кліку
 
-const menuLinks = document.querySelectorAll('.nav-block__link[data-goto]');
+const menuLinks = document.querySelectorAll('.link[data-goto]');
 if (menuLinks.length > 0) {
    menuLinks.forEach(menuLink => {
-      menuLink.addEventListener("clock", onMenuLinkClick);
+      menuLink.addEventListener("click", onMenuLinkClick);
    });
 
    function onMenuLinkClick(e) {
       const menuLink = e.target;
       if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
          const gotoBlock = document.querySelector(menuLink.dataset.goto);
-         const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYoffset - document.querySelector('header').offsetHeight;
+         const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY - document.querySelector('header').offsetHeight;
 
 
          if (iconMenu.classList.contains('._active')) {
@@ -67,14 +79,23 @@ if (menuLinks.length > 0) {
    }
 }
 
-// Бургер
 
-const iconMenu = document.querySelector('.content-header__icon');
-const menuBody = document.querySelector('.nav-block__items');
-if (iconMenu) {
-   iconMenu.addEventListener("click", function (e) {
-      document.body.classList.toggle('_lock');
-      iconMenu.classList.toggle('_active');
-      menuBody.classList.toggle('_active');
-   });
-}
+
+
+//Плеєр
+
+// const videoPlayer = document.querySelector('.video-player')
+// const video = videoPlayer.querySelector('.video')
+// const playButton = videoPlayer.querySelector('.play-button')
+
+// playButton.addEventListener('click', (e) => {
+//    if (video.paused) {
+//       video.play()
+//       e.target.textContent = '||'
+//    }
+//    else {
+//       video.pause()
+//       e.target.textContent = '‣'
+//    }
+// })
+
